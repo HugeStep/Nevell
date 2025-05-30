@@ -113,18 +113,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 언어/로그인/회원가입 메뉴(여기서 lang 변수 결정)
-menu_col1, menu_col2 = st.columns([8, 2])
-with menu_col2:
-    col_lang, col_login, col_signup = st.columns([1,1,1])
-    with col_lang:
-        lang = st.selectbox("", ["한국어", "English"], label_visibility="collapsed")
-    with col_login:
-        login_clicked = st.button("로그인" if lang=="한국어" else "Login")
-    with col_signup:
-        signup_clicked = st.button("회원가입" if lang=="한국어" else "Sign Up")
-
-# 다국어 사전 및 T 정의
+# 다국어 사전 정의
 TEXT = {
     "ko": {
         "nevell": "Nevell",
@@ -193,13 +182,23 @@ TEXT = {
         "chatbot_recommend": "Generating recommendation..."
     }
 }
-lang_key = "ko" if lang == "한국어" else "en"
-T = TEXT[lang_key]
 
-# 상단 헤더 - Nevell 로고 중앙 정렬
-st.markdown(f"<div style='text-align:center;'><span style='font-size:70px; color:#5E5841; font-weight:bold;'>{T['nevell']}</span></div>", unsafe_allow_html=True)
-# Nevell 아래에 작은 글씨 설명 추가
-st.markdown(f"<div style='text-align:center; margin-top:-18px;'><span style='font-size:18px; color:#5E5841;'>{T['desc']}</span></div>", unsafe_allow_html=True)
+# 1. Nevell 로고/설명 중앙
+st.markdown(f"<div style='text-align:center;'><span style='font-size:70px; color:#5E5841; font-weight:bold;'>Nevell</span></div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:center; margin-top:-18px; margin-bottom:0px;'><span style='font-size:18px; color:#5E5841;'>사용자 적합 화장품 추천 AI 서비스</span></div>", unsafe_allow_html=True)
+
+# 2. 로고/설명 바로 아래에 메뉴 오른쪽 정렬 (여기서 lang, login_clicked, signup_clicked, T 정의)
+menu_col1, menu_col2 = st.columns([8, 2])
+with menu_col2:
+    col_lang, col_login, col_signup = st.columns([1,1,1])
+    with col_lang:
+        lang = st.selectbox("", ["한국어", "English"], label_visibility="collapsed")
+    lang_key = "ko" if lang == "한국어" else "en"
+    T = TEXT[lang_key]
+    with col_login:
+        login_clicked = st.button(T["login"])
+    with col_signup:
+        signup_clicked = st.button(T["signup"])
 
 # 로그인/회원가입 모달 창 구현 (Streamlit은 진짜 모달은 없으나, expander+session_state로 유사하게 구현)
 if "show_login" not in st.session_state:
