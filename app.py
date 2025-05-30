@@ -142,8 +142,8 @@ TEXT = {
         "login_done": "로그인 완료",
         "signup_done": "회원가입 완료",
         "close": "닫기",
-        "login_success": "로그인 성공! (예시)",
-        "signup_success": "회원가입 성공! (예시)",
+        "login_success": "로그인 성공!",
+        "signup_success": "회원가입 성공!",
         "user_saved": "사용자 정보가 저장되었습니다.",
         "ai_recommend": "AI 추천을 생성 중입니다...",
         "chatbot_recommend": "추천을 생성 중입니다..."
